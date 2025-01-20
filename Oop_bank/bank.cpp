@@ -1,7 +1,9 @@
 #include<iostream>
 #include<iomanip>
+#include<fstream>
 using namespace std;
 #define MAX_AMOUNT 100000 
+#define FILE_NAME "transcation.txt"
 
 
 void depositeAmount(int amt,int* total,int * arr_tran,int * tr_count){
@@ -19,14 +21,13 @@ void depositeAmount(int amt,int* total,int * arr_tran,int * tr_count){
             total[*tr_count] = amt;
         else
             total[*tr_count] = total[*tr_count-1]+ amt;
-
-        // freopen("output.txt","a",stdout);
-        //         cout<<"Transaction Deposited of Rupees : \t +"<<setw(6)<<setfill('0')<<arr_tran[*tr_count]<<endl;
-        // fclose(stdout);
-        freopen("hell.txt","a",stdout);
-        cout<<"hell world";
-        fflush(stdout);
-        fclose(stdout);
+        ofstream file ;
+        file.open(FILE_NAME,ios::app);
+        setfill('0');
+        setw(6);
+        string str = " Transaction Deposited of Rupees :\t +"+to_string(arr_tran[*tr_count])+"\n";
+        file<<str;
+        file.close();
         return ;
 
 }
@@ -43,9 +44,13 @@ void withdrawAmount(int amt,int* total,int arr_tran[],int* tr_count){
         else
             total[*tr_count] = total[*tr_count-1]- amt;
     
-    // freopen("output.txt","a",stdout);  
-    // cout<<" Transaction Deposited of Rupees :\t +"<<setw(6)<<setfill('0')<<(arr_tran[*tr_count])<<endl;
-    // fclose(stdout);
+    ofstream file ;
+        file.open(FILE_NAME,ios::app);
+        setfill('0');
+        setw(6);
+        string str = " Transaction withdraw of Rupees :\t -"+to_string(arr_tran[*tr_count])+"\n";
+        file<<str;
+        file.close();
     return ;
 }
 void print(int  arr_tran[], int tr_count,int* total){
