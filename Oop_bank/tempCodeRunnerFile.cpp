@@ -1,1 +1,0 @@
-nsaction Deposited of Rupees : \t +"<<setw(6)<<setfill('0')<<arr_tran[*tr_coun
